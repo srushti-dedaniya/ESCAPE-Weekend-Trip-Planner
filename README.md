@@ -222,9 +222,8 @@ MOOD → DISCOVERY → ESCAPE MATCH → DESTINATION → WEEKEND PLAN
 
 **Srushti Dedaniya**
 
-- GitHub: [Add GitHub Profile]
-- LinkedIn: [Add LinkedIn Profile]
-- Portfolio: [Add Portfolio Link]
+- GitHub: (https://github.com/srushti-dedaniya)
+- Portfolio: (https://srushtidedaniya-portfolio.vercel.app/)
 
 ---
 
