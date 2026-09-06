@@ -16,15 +16,54 @@
   main > :last-child {
     margin-bottom: 0 !important;
   }
+  
+  /* Focus visible styles for keyboard navigation */
+  :focus-visible {
+    outline: 2px solid #ff6b4a;
+    outline-offset: 2px;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  /* Better text selection contrast */
+  ::selection {
+    background-color: #ff6b4a;
+    color: #050e1c;
+  }
 }
 
-::-webkit-scrollbar {
-  display: none;
-}
-
+/* Hide scrollbar but keep scroll functionality */
 @layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
   .text-balance {
     text-wrap: balance;
+  }
+  
+  /* Focus ring utility */
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface;
   }
 }
 
@@ -52,4 +91,12 @@
 
 .animate-bounce {
   animation: bounce 1s infinite;
+}
+
+/* Skip link for keyboard users */
+.skip-link {
+  @apply absolute -top-10 left-4 z-50 px-4 py-2 bg-primary-container text-on-primary-container font-label-caps text-label-caps uppercase rounded transition-all;
+}
+.skip-link:focus {
+  @apply top-4;
 }

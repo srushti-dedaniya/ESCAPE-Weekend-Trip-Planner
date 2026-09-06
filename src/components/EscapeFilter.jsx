@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { filterCategories, filterBudgets, filterDistances } from '../data/destinations';
 
@@ -10,7 +10,7 @@ export default function EscapeFilter({
   activeDistance, 
   onDistanceChange 
 }) {
-  const [filterCounter, setFilterCounter] = useState('Showing <strong class="text-on-surface font-bold">8 curated sanctuaries</strong> matching parameters');
+  const filterCounter = 'Showing <strong class="text-on-surface font-bold">8 curated sanctuaries</strong> matching parameters';
 
   const handleCategoryClick = useCallback((category) => {
     onCategoryChange(category);
@@ -32,11 +32,13 @@ export default function EscapeFilter({
       viewport={{ once: true }}
     >
       <span className="font-label-caps text-[10px] uppercase text-outline tracking-wider">{label}</span>
-      <div className="flex flex-wrap gap-space-2xs" id={id}>
+      <div className="flex flex-wrap gap-space-2xs" id={id} role="group" aria-label={label}>
         {options.map(option => (
           <motion.button
             key={option}
-            className={`filter-btn px-space-sm py-1.5 rounded-full font-label-caps text-label-caps uppercase transition-all ${
+            role="button"
+            aria-pressed={activeValue === option}
+            className={`filter-btn px-space-sm py-1.5 rounded-full font-label-caps text-label-caps uppercase transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-container focus-visible:ring-offset-2 focus-visible:ring-offset-surface ${
               activeValue === option ? activeClasses : inactiveClasses
             }`}
             onClick={() => onClick(option)}
@@ -51,7 +53,7 @@ export default function EscapeFilter({
   );
 
   return (
-    <section className="py-space-xl px-gutter-mobile lg:px-gutter-desktop max-w-7xl mx-auto w-full">
+    <section className="py-space-xl px-gutter-mobile lg:px-gutter-desktop max-w-7xl mx-auto w-full" aria-labelledby="filter-heading">
       <motion.div 
         className="p-space-lg rounded-3xl bg-surface-container-low/90 backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] flex flex-col gap-space-lg"
         initial={{ opacity: 0, y: 30 }}
@@ -59,10 +61,10 @@ export default function EscapeFilter({
         viewport={{ once: true }}
       >
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
-          <div className="flex items-center gap-space-xs font-label-caps text-label-caps uppercase text-secondary">
-            <span className="material-symbols-outlined text-[18px]">tune</span>
+          <h2 id="filter-heading" className="flex items-center gap-space-xs font-label-caps text-label-caps uppercase text-secondary">
+            <span className="material-symbols-outlined text-[18px]" aria-hidden="true">tune</span>
             <span>Dynamic Trajectory Filters</span>
-          </div>
+          </h2>
           <span className="font-label-numeric text-label-numeric text-on-surface-variant" id="filter-feedback-counter" dangerouslySetInnerHTML={{ __html: filterCounter }} />
         </div>
 

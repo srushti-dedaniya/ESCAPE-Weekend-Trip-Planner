@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import DestinationCard from './DestinationCard';
 import { destinations } from '../data/destinations';
 
-export default function DestinationGrid({ activeCategory, activeBudget, activeDistance }) {
+export default function DestinationGrid({ activeCategory, _activeBudget, _activeDistance }) {
   const filteredDestinations = destinations.filter(dest => {
     const categoryMatch = activeCategory === 'All' || dest.category === activeCategory;
-    // For simplicity, we'll just filter by category for now
+    // Note: budget/distance filtering reserved for future enhancement when destination data includes these fields
     return categoryMatch;
   });
 
@@ -49,13 +49,13 @@ export default function DestinationGrid({ activeCategory, activeBudget, activeDi
         )}
 
         <div className="lg:col-span-5 flex flex-col gap-space-lg">
-          {regularDests.slice(0, 2).map((dest, index) => (
+          {regularDests.slice(0, 2).map((dest) => (
             <DestinationCard key={dest.id} destination={dest} />
           ))}
         </div>
 
         <div className="lg:col-span-6 flex flex-col gap-space-lg">
-          {stripDests.map((dest, index) => (
+          {stripDests.map((dest) => (
             <DestinationCard key={dest.id} destination={dest} />
           ))}
         </div>

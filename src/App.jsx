@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Discover from './components/Discover';
@@ -51,8 +50,9 @@ function App() {
 
   return (
     <div className="bg-surface font-body-md text-body-md text-on-surface antialiased selection:bg-primary-container selection:text-on-primary-container min-h-screen">
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <Navbar />
-      <main className="w-full pt-20 bg-surface min-h-screen">
+      <main id="main-content" className="w-full pt-20 bg-surface min-h-screen">
         <div className="flex flex-col w-full text-on-surface overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
           <Hero onFindEscapeClick={handleFindEscapeClick} />
           <Discover />
